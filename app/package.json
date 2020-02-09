@@ -1,0 +1,21 @@
+{
+  "name": "qa-automation-workshop",
+  "version": "1.0.0",
+  "description": "GraphQL application for Wizeline's QA Automation Workshop",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm i && nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tavo Parra",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^2.10.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "graphql": "^14.6.0",
+    "graphql-tools": "^4.0.6",
+    "mongoose": "^5.8.11",
+    "nodemon": "^2.0.2"
+  }
+}

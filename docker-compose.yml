@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+    graphql:
+        image: "node"
+        user: "node"
+        working_dir: /home/node/app
+        depends_on:
+            - db
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./app:/home/node/app
+        command: "npm start"
+    
+    db:
+        image: mongo
+        ports:
+            - "27017:27017"
+        volumes:
+            - mongodata:/data/db
+    
+    ngrok:
+        image: nginx
+        volumes:
+            - ./ngrok:/code/
+        command: /code/ngrok http graphql:8000 -config=/code/ngrok.conf
+        depends_on: 
+            - graphql
+        ports:
+            - 4040:4040
+        
+            
+
+volumes:
+    mongodata:
