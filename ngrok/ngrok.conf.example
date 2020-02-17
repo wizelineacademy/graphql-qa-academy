@@ -1,3 +1,4 @@
 web_addr: 0.0.0.0:4040
 authtoken: YOUR_NGROK_AUTHTOKEN_HERE
+root_cas: trusted
 log: stdout

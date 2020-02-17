@@ -1,8 +1,17 @@
 const { TodoModel } = require('../../../models');
 
-module.exports = async (parent, { showCompleted }) => {
+module.exports = async (parent, { projectId, showCompleted }) => {
     try {
-        const filter = showCompleted ? {} : { status: 'PENDING' }
+        const filter = {}
+
+        if (projectId) {
+            filter['project'] = projectId
+        }
+
+        if (!showCompleted) {
+            filter['status'] = 'PENDING'
+        }
+
         const Todos = await TodoModel.find(filter);
 
         return Todos
