@@ -1,5 +1,5 @@
 const express = require('express');
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer, AuthenticationError } = require('apollo-server-express');
 const mongoose = require('mongoose');
 
 const typeDefs = require('./graphql/typeDefs')
@@ -13,7 +13,19 @@ const db  = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
  
 db.once('open', () => {
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: ({ req }) => {
+      const token = req.headers.authorization;
+
+      if (!token || token != 'Bearer QA2020') {
+        throw new AuthenticationError('Authentication error')
+      }
+
+      return { token }
+    }
+  });
   
   const app = express();
   const path = '/'
