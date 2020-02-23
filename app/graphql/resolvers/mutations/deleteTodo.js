@@ -1,8 +1,9 @@
-const { TodoModel } = require('../../../models')
+const { TodoModel, CommentModel } = require('../../../models')
 
 module.exports = async (parent, { todoId }) => {
     try {
-        deleted = await TodoModel.deleteOne({ '_id': todoId })
+        await TodoModel.deleteOne({ '_id': todoId })
+        await CommentModel.deleteMany({ 'todo': todoId })
     } catch (e) {
         throw new Error('Todo not found')
     }

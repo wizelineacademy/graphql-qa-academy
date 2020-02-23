@@ -6,7 +6,7 @@ const typeDefs = require('./graphql/typeDefs')
 const resolvers = require('./graphql/resolvers')
 
 const mongoDB = 'mongodb://db:27017/todos'
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 mongoose.Promise = global.Promise;
 const db  = mongoose.connection;
 

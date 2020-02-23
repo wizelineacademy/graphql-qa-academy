@@ -51,6 +51,10 @@ module.exports = `
         addTodo(todo: TodoInput!): Todo!
         addComment(comment: CommentInput!): Comment
         completeTodo(id: ID!): Boolean!
+        updateProject(projectId: ID!, name: String!): Project!
+        updateTodo(todoId: ID!, todo: String, status: Status): Todo!
+        updateComment(commentId: ID!, text: String!): Comment!
+        deleteProject(projectId: ID!): Boolean!
         deleteTodo(todoId: ID!): Boolean!
         deleteComment(commentId: ID!): Boolean!
     }
