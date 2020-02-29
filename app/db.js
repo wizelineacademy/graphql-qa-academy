@@ -1,3 +1,3 @@
 module.exports = {
-    DB: 'mongodb://mongo:27017/todos'
+    DB: `mongodb://${process.env.USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:27017/todos?authSource=admin`
 }

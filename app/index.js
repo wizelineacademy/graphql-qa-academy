@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const typeDefs = require('./graphql/typeDefs')
 const resolvers = require('./graphql/resolvers')
 
-const mongoDB = 'mongodb://db:27017/todos'
+const mongoDB = `mongodb://${process.env.USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:27017/todos`;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 mongoose.Promise = global.Promise;
 const db  = mongoose.connection;
@@ -24,7 +24,8 @@ db.once('open', () => {
       }
 
       return { token }
-    }
+    },
+    playground: false
   });
   
   const app = express();

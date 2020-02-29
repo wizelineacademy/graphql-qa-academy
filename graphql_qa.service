@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+[Unit]
+Description=Graphql QA Academy
+
+[Service]
+ExecStart=/root/graphql-qa-academy/app/index.js
+Restart=always
+User=root
+Group=root
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/root/graphql-qa-academy/app
+
+[Install]
+WantedBy=multi-user.target
